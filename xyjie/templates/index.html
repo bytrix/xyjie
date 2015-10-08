@@ -12,6 +12,9 @@
 				text-decoration: none;
 				color: #000;
 			}
+			a:hover{
+			  	color: rgb(160,60,10);
+			}
 			.header{
 				/*color: #float:ff;*/
 				width: 100%;
@@ -109,10 +112,12 @@
 			}
 			.container .hero{
 				width: auto;
-				height: 520px;
+				height: 380px;
 				/*background-color: #666;*/
 				background-image: url("{% static "imgs/bg.jpg" %}");
-				background-position: 0px 140px;
+				background-color: red;
+				background-repeat: no-repeat;
+				background-position: 0px 0px;
 				color: #fff;
 				/*margin-top: 140px;*/
 				padding-top: 140px;
@@ -182,6 +187,7 @@
 				margin: 0 auto;
 				margin-top: 180px;
 				box-shadow: 0 2px 24px rgba(0,0,0,0.8);
+				transition: 0.4s;
 			}
 
 			form.searchBox input{
@@ -318,12 +324,16 @@
 				var nav=$("#nav li a");
 				var logo=$("#logo h1");
 				var nav_right=$('#nav-right');
-				if(scrollTop>=330){
+				if(scrollTop>=240){
 					header.addClass("shrink");
 					nav.addClass('shrink');
 					logo.addClass('shrink');
 					nav_right.addClass('shrink');
-					$('form.searchBox').hide();
+					//$('form.searchBox').fadeOut();
+					$('form.searchBox').css({
+									'-webkit-filter': 'blur(10px)',
+									'margin-top': '110px'
+									});
 					$('form.searchBoxOnTop').fadeIn('fast');
 
 				}else{
@@ -331,7 +341,11 @@
 					nav.removeClass('shrink');
 					logo.removeClass('shrink');
 					nav_right.removeClass('shrink');
-					$('form.searchBox').show();
+					$('form.searchBox').fadeIn();
+					$('form.searchBox').css({
+									'-webkit-filter': 'blur(0px)',
+									'margin-top': '180px'
+									});
 					$('form.searchBoxOnTop').fadeOut('fast');
 				}
 				// console.log('aaa');
