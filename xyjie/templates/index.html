@@ -59,6 +59,9 @@
 				/*background-color: red;*/
 				transition: 0.2s;
 			}
+			#logo h1:hover{
+				text-shadow: 0 0 8px #777;
+			}
 			#logo h1.shrink{
 				width: 60px;
 				height: 60px;
@@ -104,7 +107,7 @@
 				transition: 0.25s;
 			}
 			ul#nav li a:hover{
-				background-color: rgba(0,0,0,0.05);
+				background-color: rgba(0,0,0,0.1);
 			}
 			.container{
 				width: 100%;
@@ -125,8 +128,8 @@
 
 
 			form.searchBoxOnTop{
-				padding: 2px;
-				background-color: #eee;
+				padding: 1px;
+				background-color: rgba(120,20,2,0.3);
 				display: none;
 				/*width: 410px;*/
 				position: absolute;
@@ -136,6 +139,10 @@
 				/*text-align: right;*/
 				/*padding-right: 0px;*/
 				/*display: inline-block;*/
+			}
+			form.searchBoxOnTopHover{
+				background-color: rgba(120,20,2,0.6);
+				box-shadow: 0 0 12px rgba(120,20,2,0.4);
 			}
 			form.searchBoxOnTop input{
 				float: right;
@@ -239,9 +246,11 @@
 			}
 			.box:hover{
 				background-color: rgba(0,0,0,0.1);
+				
 			}
 			.box img{
 				width: 100%;
+				transition: 0.3s;
 			}
 			.footer{
 				width: 100%;
@@ -298,52 +307,64 @@
 		<div class="footer">
 		</div>
 		<script>
-			$(function(){
-				$('#img-fall').masonry();
+			$(function() {
+			    $('#img-fall').masonry();
 			});
-			var logo=document.getElementById("logo");
-			var navbar=document.getElementById("navbar");
-			window.onscroll=function(){
-				var scrollTop=document.body.scrollTop;
-				// var logoSize=140-scrollTop;
-				console.log(scrollTop);
-				var header=$(".header");
-				var nav=$("#nav li a");
-				var logo=$("#logo h1");
-				var nav_right=$('#nav-right');
-				if(scrollTop>=180){
-					header.addClass("shrink");
-					nav.addClass('shrink');
-					logo.addClass('shrink');
-					nav_right.addClass('shrink');
-					//$('form.searchBox').fadeOut();
-					$('form.searchBox').css({
-									'-webkit-filter': 'blur(5px)',
-									'margin-top': '40px'
-									});
-					$('form.searchBoxOnTop').fadeIn('fast');
+			var logo = document.getElementById("logo");
+			var navbar = document.getElementById("navbar");
+			window.onscroll = function() {
+			    var scrollTop = document.body.scrollTop;
+			    // var logoSize=140-scrollTop;
+			    console.log(scrollTop);
+			    var header = $(".header");
+			    var nav = $("#nav li a");
+			    var logo = $("#logo h1");
+			    var nav_right = $('#nav-right');
+			    if (scrollTop >= 180) {
+				header.addClass("shrink");
+				nav.addClass('shrink');
+				logo.addClass('shrink');
+				nav_right.addClass('shrink');
+				//$('form.searchBox').fadeOut();
+				$('form.searchBox').css({
+					'-webkit-filter': 'blur(5px)',
+					'margin-top': '40px'
+				});
+				$('form.searchBoxOnTop').fadeIn('fast');
 
-				}else{
-					header.removeClass("shrink");
-					nav.removeClass('shrink');
-					logo.removeClass('shrink');
-					nav_right.removeClass('shrink');
-					$('form.searchBox').fadeIn();
-					$('form.searchBox').css({
-									'-webkit-filter': 'blur(0px)',
-									'margin-top': '180px'
-									});
-					$('form.searchBoxOnTop').fadeOut('fast');
-				}
-				// console.log('aaa');
-				// logo.innerHTML="scrollTop: "+scrollTop+"<br />logoSize: "+logoSize;
-				// logo.style.width=logoSize;
-				// logo.style.height=logoSize;
-				// logo.style.backgroundColor="rgba("+logoSize+","+logoSize+",0,0.5)";
-				
-				
-				// navbar.style.height=logoSize;
-				// navbar.style.backgroundColor="rgba(0,"+logoSize+",0,0.5)";
+			    } else {
+				header.removeClass("shrink");
+				nav.removeClass('shrink');
+				logo.removeClass('shrink');
+				nav_right.removeClass('shrink');
+				$('form.searchBox').fadeIn();
+				$('form.searchBox').css({
+					'-webkit-filter': 'blur(0px)',
+					'margin-top': '180px'
+				});
+				$('form.searchBoxOnTop').fadeOut('fast');
+			    }
+
+			    $('.box').mouseover(function() {
+				$(this).find('img').css('opacity', '0.9');
+			    });
+			    $('.box').mouseout(function() {
+				$(this).find('img').css('opacity', '1.0');
+			    });
+			    $('.searchBoxOnTop input[type="text"]').focus(function(){
+			    	$(this).parent().addClass('searchBoxOnTopHover');
+			    });
+			    $('.searchBoxOnTop input[type="text"]').blur(function(){
+			    	$(this).parent().removeClass('searchBoxOnTopHover');
+			    });
+			    // console.log('aaa');
+			    // logo.innerHTML="scrollTop: "+scrollTop+"<br />logoSize: "+logoSize;
+			    // logo.style.width=logoSize;
+			    // logo.style.height=logoSize;
+			    // logo.style.backgroundColor="rgba("+logoSize+","+logoSize+",0,0.5)";
+
+			    // navbar.style.height=logoSize;
+			    // navbar.style.backgroundColor="rgba(0,"+logoSize+",0,0.5)";
 			}
 		</script>
 	</body>
